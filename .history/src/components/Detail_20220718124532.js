@@ -32,11 +32,6 @@ function Detail() {
           <img src='/images/group-icon.png' alt='' />
         </GroupWatchButton>
       </Controls>
-      <SubTitle>2018 . 7m . Family,Kids,Animation</SubTitle>
-      <Description>
-        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Porro officiis
-        ut libero nemo commodi pariatur aliquam reprehenderit laborum vel quasi.
-      </Description>
     </Container>
   )
 }
@@ -44,12 +39,9 @@ function Detail() {
 export default Detail
 
 const Container = styled.div`
+  min-height: calc(100vh - 70px);
+  padding: 09 calc(3.5vw + 5px);
   position: relative;
-  min-height: calc(100vh-250px);
-  overflow-x: hidden;
-  display: block;
-  top: 72px;
-  padding: 0 calc(3.5vw + 5px);
 `
 const Background = styled.div`
   position: fixed;
@@ -121,18 +113,4 @@ const AddButton = styled.button`
     color: white;
   }
 `
-const GroupWatchButton = styled(AddButton)`
-  background: rgb(0, 0, 0);
-`
-const SubTitle = styled.div`
-  color: rgba(249, 249, 249);
-  font-size: 15px;
-  min-height: 20px;
-  margin-top: 26px;
-`
-const Description = styled.div`
-  line-height: 1.4;
-  font-size: 20px;
-  margin-top: 16px;
-  color: rgba(249, 249, 249);
-`
+const GroupWatchButton = styled.button``

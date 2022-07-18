@@ -44,12 +44,9 @@ function Detail() {
 export default Detail
 
 const Container = styled.div`
+  min-height: calc(100vh - 70px);
+  padding: 0 9 calc(3.5vw + 5px);
   position: relative;
-  min-height: calc(100vh-250px);
-  overflow-x: hidden;
-  display: block;
-  top: 72px;
-  padding: 0 calc(3.5vw + 5px);
 `
 const Background = styled.div`
   position: fixed;

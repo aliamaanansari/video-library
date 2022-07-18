@@ -25,18 +25,9 @@ function Detail() {
           <img src='/images/play-icon-white.png' alt='' />
           <span>Trailer</span>
         </TrailerButton>
-        <AddButton>
-          <span>+</span>
-        </AddButton>
-        <GroupWatchButton>
-          <img src='/images/group-icon.png' alt='' />
-        </GroupWatchButton>
+        <AddButton></AddButton>
+        <GroupWatchButton></GroupWatchButton>
       </Controls>
-      <SubTitle>2018 . 7m . Family,Kids,Animation</SubTitle>
-      <Description>
-        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Porro officiis
-        ut libero nemo commodi pariatur aliquam reprehenderit laborum vel quasi.
-      </Description>
     </Container>
   )
 }
@@ -44,12 +35,9 @@ function Detail() {
 export default Detail
 
 const Container = styled.div`
+  min-height: calc(100vh - 70px);
+  padding: 09 calc(3.5vw + 5px);
   position: relative;
-  min-height: calc(100vh-250px);
-  overflow-x: hidden;
-  display: block;
-  top: 72px;
-  padding: 0 calc(3.5vw + 5px);
 `
 const Background = styled.div`
   position: fixed;
@@ -79,7 +67,6 @@ const ImageTitle = styled.div`
 `
 const Controls = styled.div`
   display: flex;
-  align-items: center;
 `
 const PlayButton = styled.button`
   border-radius: 4px;
@@ -94,45 +81,7 @@ const PlayButton = styled.button`
   border: none;
   letter-spacing: 1.8px;
   cursor: pointer;
-
-  &:hover {
-    background: rgb(198, 198, 198);
-  }
 `
-const TrailerButton = styled(PlayButton)`
-  background: rgba(0, 0, 0, 0.3);
-  border: 1px solid rgb(249, 249, 249);
-  color: rgb(249, 249, 249);
-  text-transform: uppercase;
-`
-const AddButton = styled.button`
-  margin-right: 16px;
-  width: 44px;
-  height: 44px;
-  display: flex;
-  justify-content: center;
-  border-radius: 50%;
-  border: 2px solid white;
-  background: rgba(0, 0, 0, 0.6);
-  cursor: pointer;
-
-  span {
-    font-size: 30px;
-    color: white;
-  }
-`
-const GroupWatchButton = styled(AddButton)`
-  background: rgb(0, 0, 0);
-`
-const SubTitle = styled.div`
-  color: rgba(249, 249, 249);
-  font-size: 15px;
-  min-height: 20px;
-  margin-top: 26px;
-`
-const Description = styled.div`
-  line-height: 1.4;
-  font-size: 20px;
-  margin-top: 16px;
-  color: rgba(249, 249, 249);
-`
+const TrailerButton = styled.button``
+const AddButton = styled.button``
+const GroupWatchButton = styled.button``

@@ -44,12 +44,9 @@ function Detail() {
 export default Detail
 
 const Container = styled.div`
+  min-height: calc(100vh - 70px);
+  padding: 09 calc(3.5vw + 5px);
   position: relative;
-  min-height: calc(100vh-250px);
-  overflow-x: hidden;
-  display: block;
-  top: 72px;
-  padding: 0 calc(3.5vw + 5px);
 `
 const Background = styled.div`
   position: fixed;
@@ -130,9 +127,4 @@ const SubTitle = styled.div`
   min-height: 20px;
   margin-top: 26px;
 `
-const Description = styled.div`
-  line-height: 1.4;
-  font-size: 20px;
-  margin-top: 16px;
-  color: rgba(249, 249, 249);
-`
+const Description = styled.div``
