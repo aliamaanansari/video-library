@@ -1,10 +1,35 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import styled from 'styled-components'
 import ImageSlider from './ImageSlider'
 import Movies from './Movies'
 import Viewers from './Viewers'
+import db, { collection, onSnapshot } from '../firebase'
 
 function Home() {
+  useEffect(() => {
+    onSnapshot(collection(db, 'movies'), (snapshot) => {
+      let tempMovies = snapshot.docs.map((doc) => {
+        console.log(doc.data())
+        return {
+          id: doc.id,
+          ...doc.data(),
+        }
+      })
+      console.log({ tempMovies })
+    })
+
+    // db.collection('movies').onSnapshot((snapshot) => {
+    //   let tempMovies = snapshot.docs.map((doc) => {
+    //     console.log(doc.data())
+    //     return {
+    //       id: doc.id,
+    //       ...doc.data(),
+    //     }
+    //   })
+    //   console.log({ tempMovies })
+    // })
+  }, [])
+
   return (
     <Container>
       <ImageSlider />
