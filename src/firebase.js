@@ -1,6 +1,6 @@
 import { initializeApp } from 'firebase/app'
 import { getFirestore } from 'firebase/firestore'
-import { getAuth, GoogleAuthProvider } from 'firebase/auth'
+import { getAuth, GoogleAuthProvider, signInWithPopup } from 'firebase/auth'
 import { getStorage } from 'firebase/storage'
 import { collection, onSnapshot, doc, getDoc } from 'firebase/firestore'
 
@@ -19,8 +19,18 @@ const firebaseConfig = {
 const firebaseApp = initializeApp(firebaseConfig)
 const db = getFirestore(firebaseApp)
 const auth = getAuth(firebaseApp)
+
 const provider = new GoogleAuthProvider()
 const storage = getStorage(firebaseApp)
 
-export { auth, provider, storage, onSnapshot, collection, doc, getDoc }
+export {
+  auth,
+  provider,
+  storage,
+  onSnapshot,
+  collection,
+  doc,
+  getDoc,
+  signInWithPopup,
+}
 export default db

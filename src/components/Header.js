@@ -3,23 +3,42 @@ import styled from 'styled-components'
 import {
   selectUserName,
   selectUserPhoto,
-  selectUserEmail,
+  setUserLogin,
 } from '../features/user/userSlice'
 import { useSelector } from 'react-redux'
-import { GoogleAuthProvider, provider, getAuth } from '../firebase'
+import {
+  GoogleAuthProvider,
+  provider,
+  auth,
+  signInWithPopup,
+} from '../firebase'
+import { useDispatch } from 'react-redux'
 
 function Header() {
+  const dispatch = useDispatch()
   const userName = useSelector(selectUserName)
   const userPhoto = useSelector(selectUserPhoto)
 
-  const signIn = () => {}
+  const signIn = () => {
+    signInWithPopup(auth, provider).then((result) => {
+      let user = result.user
+
+      dispatch(
+        setUserLogin({
+          name: user.displayName,
+          email: user.email,
+          photo: user.photoUrl,
+        })
+      )
+    })
+  }
 
   return (
     <Nav>
       <Logo src='/images/logo-showtime.png' />
       {!userName ? (
         <LoginContainer>
-          <Login>Login</Login>
+          <Login onClick={signIn}>Login</Login>
         </LoginContainer>
       ) : (
         <>
