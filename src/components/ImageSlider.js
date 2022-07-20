@@ -17,11 +17,14 @@ function ImageSlider() {
   return (
     <Carousel {...settings}>
       <Wrap>
-        <img src='/images/slider-badging.jpg' alt='' />
+        <img src='/images/interstellar-wallpaper.jpg' alt='' />
       </Wrap>
 
       <Wrap>
-        <img src='/images/slider-badag.jpg' alt='' />
+        <img
+          src='/images/leonardo-dicaprio-in-inception-wallpaper.jpg'
+          alt=''
+        />
       </Wrap>
     </Carousel>
   )
@@ -53,10 +56,10 @@ const Carousel = styled(Slider)`
 `
 const Wrap = styled.div`
   img {
-    border-radius: 4px;
+    border-radius: 8px;
+    max-width: 100%;
+    max-height: 300px;
     width: 100%;
-    height: 100%;
-
     box-shadow: rgb(0 0 0 / 69%) 0px 26px 30px -10px,
       rgb(0 0 0 / 73%) 0px 16px 10px -10px;
 

@@ -1,8 +1,11 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import styled from 'styled-components'
+import { useNavigate } from 'react-router-dom'
+
 import {
   selectUserName,
   selectUserPhoto,
+  setSignOut,
   setUserLogin,
 } from '../features/user/userSlice'
 import { useSelector } from 'react-redux'
@@ -13,23 +16,49 @@ import {
   signInWithPopup,
 } from '../firebase'
 import { useDispatch } from 'react-redux'
+import { async } from '@firebase/util'
 
 function Header() {
+  const navigate = useNavigate()
   const dispatch = useDispatch()
   const userName = useSelector(selectUserName)
   const userPhoto = useSelector(selectUserPhoto)
 
+  useEffect(() => {
+    auth.onAuthStateChanged(async (user) => {
+      if (user) {
+        dispatch(
+          setUserLogin({
+            name: user.displayName,
+            email: user.email,
+            photo: user.photoURL,
+          })
+        )
+        navigate('/')
+      }
+    })
+  }, [])
+
   const signIn = () => {
     signInWithPopup(auth, provider).then((result) => {
       let user = result.user
+      console.log(user)
 
       dispatch(
         setUserLogin({
           name: user.displayName,
           email: user.email,
-          photo: user.photoUrl,
+          photo: user.photoURL,
         })
       )
+      navigate('/')
+    })
+  }
+
+  const signOut = () => {
+    auth.signOut().then(() => {
+      dispatch(setSignOut())
+      navigate('/login')
     })
   }
 
@@ -68,7 +97,7 @@ function Header() {
               <span>SERIES</span>
             </a>
           </NavMenu>
-          <UserImg src='/images/userimg.jpg' />
+          <UserImg onClick={signOut} src={userPhoto || '/images/userimg.jpg'} />
         </>
       )}
     </Nav>
