@@ -2,7 +2,7 @@ import { initializeApp } from 'firebase/app'
 import { getFirestore } from 'firebase/firestore'
 import { getAuth, GoogleAuthProvider } from 'firebase/auth'
 import { getStorage } from 'firebase/storage'
-import { collection, onSnapshot } from 'firebase/firestore'
+import { collection, onSnapshot, doc, getDoc } from 'firebase/firestore'
 
 const firebaseConfig = {
   apiKey: 'AIzaSyCqH6a0Ibd5L7-MrxyWZCYU9c8GYP3RV6s',
@@ -22,5 +22,5 @@ const auth = getAuth(firebaseApp)
 const provider = new GoogleAuthProvider()
 const storage = getStorage(firebaseApp)
 
-export { auth, provider, storage, onSnapshot, collection }
+export { auth, provider, storage, onSnapshot, collection, doc, getDoc }
 export default db

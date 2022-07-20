@@ -4,25 +4,19 @@ import Header from './components/Header'
 import Detail from './components/Detail'
 import Login from './components/Login'
 import Home from './components/Home'
-import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom'
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
 
 function App() {
   return (
     <div className='App'>
-      <Router>
-        <Header />
-        <Switch>
-          <Route path='/login'>
-            <Login />
-          </Route>
-          <Route path='/detail'>
-            <Detail />
-          </Route>
-          <Route path='/'>
-            <Home />
-          </Route>
-        </Switch>
-      </Router>
+      <Header />
+      <BrowserRouter>
+        <Routes>
+          <Route path='/login' element={<Login />} />
+          <Route path='/' element={<Home />} />
+          <Route path='/detail/:id' element={<Detail />} />
+        </Routes>
+      </BrowserRouter>
     </div>
   )
 }
