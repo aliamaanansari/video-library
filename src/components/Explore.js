@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import styled, { css } from 'styled-components'
+import styled from 'styled-components'
 import Movies from './Movies'
 import jsonData from '../db.json'
 import { useSelector } from 'react-redux'

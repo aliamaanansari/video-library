@@ -1,22 +1,15 @@
 import React, { useEffect } from 'react'
-import styled from 'styled-components'
 import { Link, useNavigate } from 'react-router-dom'
+import styled from 'styled-components'
 
+import { useDispatch, useSelector } from 'react-redux'
 import {
   selectUserName,
   selectUserPhoto,
   setSignOut,
   setUserLogin,
 } from '../features/user/userSlice'
-import { useSelector } from 'react-redux'
-import {
-  GoogleAuthProvider,
-  provider,
-  auth,
-  signInWithPopup,
-} from '../firebase'
-import { useDispatch } from 'react-redux'
-import { async } from '@firebase/util'
+import { auth, provider, signInWithPopup } from '../firebase'
 
 function Header() {
   const navigate = useNavigate()
@@ -84,10 +77,8 @@ function Header() {
             </Link>
 
             <Link to={'/history'}>
-              <a>
-                <img src='/images/history.png' alt='' />
-                <span>HISTORY </span>
-              </a>
+              <img src='/images/history.png' alt='' />
+              <span>HISTORY </span>
             </Link>
           </NavMenu>
           <UserImg onClick={signOut} src={userPhoto || '/images/userimg.jpg'} />
