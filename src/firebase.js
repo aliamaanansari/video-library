@@ -1,5 +1,5 @@
 import { initializeApp } from 'firebase/app'
-import { getFirestore } from 'firebase/firestore'
+import { getFirestore, addDoc } from 'firebase/firestore'
 import { getAuth, GoogleAuthProvider, signInWithPopup } from 'firebase/auth'
 import { getStorage } from 'firebase/storage'
 import { collection, onSnapshot, doc, getDoc } from 'firebase/firestore'
@@ -28,6 +28,7 @@ export {
   provider,
   storage,
   onSnapshot,
+  addDoc,
   collection,
   doc,
   getDoc,

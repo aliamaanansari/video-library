@@ -1,50 +1,69 @@
 import React, { useEffect, useState } from 'react'
-import styled from 'styled-components'
+import { useDispatch } from 'react-redux'
 import { useParams } from 'react-router-dom'
-import db, { collection, getDoc, doc } from '../firebase'
+import styled from 'styled-components'
+import { setHistory } from '../features/history/historySlice'
+import db, { doc, getDoc } from '../firebase'
+import ReactPlayer from 'react-player/youtube'
 
 function Detail() {
   const { id } = useParams()
+  const dispatch = useDispatch()
   const [movie, setMovie] = useState({})
-
+  console.log({ id })
   useEffect(() => {
     const docRef = doc(db, 'movies', id)
     getDoc(docRef).then((document) => {
       if (document.exists()) {
         console.log('movies jhvbj', document.exists(), id, document.data())
         setMovie(document.data())
+        dispatch(
+          setHistory({
+            ...document.data(),
+            id,
+            lastWatched: new Date().toUTCString(),
+          })
+        )
       }
     })
-  }, [id, setMovie])
-
-  console.log({ movie })
+  }, [dispatch, id, setMovie])
 
   return (
     <Container>
       <Background>
         <img src={movie.backgroundImg} alt='' />
       </Background>
-      <ImageTitle>
-        <img src={movie.titleImg} alt='' />
-      </ImageTitle>
-      <Controls>
-        <PlayButton>
-          <img src='/images/play-icon-black.png' alt='' />
-          <span>PLAY</span>
-        </PlayButton>
-        <TrailerButton>
-          <img src='/images/play-icon-white.png' alt='' />
-          <span>Trailer</span>
-        </TrailerButton>
-        <AddButton>
-          <span>+</span>
-        </AddButton>
-        <GroupWatchButton>
-          <img src='/images/group-icon.png' alt='' />
-        </GroupWatchButton>
-      </Controls>
-      <SubTitle>{movie.subTitle}</SubTitle>
-      <Description>{movie.description}</Description>
+      <MainContainer>
+        <div>
+          <ImageTitle>
+            <img src={movie.titleImg} alt='' />
+          </ImageTitle>
+
+          <Controls>
+            <PlayButton>
+              <img src='/images/play-icon-black.png' alt='' />
+              <span>PLAY</span>
+            </PlayButton>
+            <TrailerButton>
+              <img src='/images/play-icon-white.png' alt='' />
+              <span>Trailer</span>
+            </TrailerButton>
+            <AddButton>
+              <span>+</span>
+            </AddButton>
+            <GroupWatchButton>
+              <img src='/images/group-icon.png' alt='' />
+            </GroupWatchButton>
+          </Controls>
+
+          <SubTitle>{movie.subTitle}</SubTitle>
+          <Description>{movie.description}</Description>
+        </div>
+        <ReactPlayer
+          controls={true}
+          url='https://youtu.be/2Vv-BfVoq4g?list=RD2Vv-BfVoq4g'
+        />
+      </MainContainer>
     </Container>
   )
 }
@@ -73,6 +92,10 @@ const Background = styled.div`
     object-fit: cover;
   }
 `
+const MainContainer = styled.div`
+  display: flex;
+`
+
 const ImageTitle = styled.div`
   height: 30vh;
   min-height: 170px;

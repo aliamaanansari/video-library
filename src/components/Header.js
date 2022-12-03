@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import styled from 'styled-components'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 import {
   selectUserName,
@@ -34,10 +34,10 @@ function Header() {
             photo: user.photoURL,
           })
         )
-        navigate('/')
+        // navigate('/')
       }
     })
-  }, [])
+  }, [dispatch])
 
   const signIn = () => {
     signInWithPopup(auth, provider).then((result) => {
@@ -64,7 +64,9 @@ function Header() {
 
   return (
     <Nav>
-      <Logo src='/images/logo-showtime.png' />
+      <Link to={'/'}>
+        <Logo src='/images/logo-showtime.png' />
+      </Link>
       {!userName ? (
         <LoginContainer>
           <Login onClick={signIn}>Login</Login>
@@ -72,30 +74,21 @@ function Header() {
       ) : (
         <>
           <NavMenu>
-            <a>
+            <Link to={'/'}>
               <img src='/images/home-icon.svg' alt='' />
               <span>HOME</span>
-            </a>
-            <a>
+            </Link>
+            <Link to={'/explore'}>
               <img src='/images/search-icon.svg' alt='' />
-              <span>SEARCH</span>
-            </a>
-            <a>
-              <img src='/images/watchlist-icon.svg' alt='' />
-              <span>WATCHLIST</span>
-            </a>
-            <a>
-              <img src='/images/original-icon.svg' alt='' />
-              <span>ORIGINALS</span>
-            </a>
-            <a>
-              <img src='/images/movie-icon.svg' alt='' />
-              <span>MOVIES</span>
-            </a>
-            <a>
-              <img src='/images/series-icon.svg' alt='' />
-              <span>SERIES</span>
-            </a>
+              <span>EXPLORE</span>
+            </Link>
+
+            <Link to={'/history'}>
+              <a>
+                <img src='/images/history.png' alt='' />
+                <span>HISTORY </span>
+              </a>
+            </Link>
           </NavMenu>
           <UserImg onClick={signOut} src={userPhoto || '/images/userimg.jpg'} />
         </>
